@@ -1,6 +1,23 @@
-{% extends 'pt/base.html' %}
-{% for msg in messages %}
-	<h1>
-		{{ msg }}
-	</h1>
-{% endfor %}
+{% extends 'pt/base_blog.html' %}
+
+{% block title %}
+	Целая очередь постов
+{%endblock %}
+
+{% block content %}
+	<h1 class="mb-5">Мои умные посты<h1>
+	{% for post in posts %}		
+	
+		<div class="card mb-4">
+			<div class="card-header">
+				<h2> {{ post.date_pub }} </h2>
+			</div>
+			<div class="card-body">
+				<h5 class="card-title"> {{ post.title }} </h5>
+				<p class="card-text"> {{ post.body|truncatewords:2 }} </p>
+				<a href="#" class="btn btn-primary">Читать полностью</a>
+			</div>
+		</div>			
+		
+	{% endfor %}
+{% endblock %}
