@@ -12,3 +12,7 @@ def post_detail(request, slug):
 def tags_list(request):
 	tags = Tag.objects.all()
 	return render(request, 'pt/tags_list.html', {'tags': tags})
+	
+def tag_detail(request, slug):
+	tag = Tag.objects.get(slug__iexact=slug)
+	return render(request, 'pt/tag_detail.html', {'tag': tag})
