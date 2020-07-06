@@ -40,6 +40,25 @@ class PostCreate(ObjectCreateMixin, View):
 		#return render(request, 'pt/post_create.html', {'form': bound_form})
 	model_form = PostForm
 	template = 'pt/post_create.html'
+	
+	
+class PostUpdate(ObjectUpdateMixin, View):
+	model = Post
+	model_form = PostForm
+	template = 'pt/post_update_form.html'
+	#def get(self, request, slug):
+		#post = Post.objects.get(slug__iexact=slug)
+		#bound_form = PostForm(instance=post)
+		#return render(request, 'pt/post_update_form.html', {'form': bound_form, 'post': post})
+		
+	#def post(self, request, slug):
+		#post = Post.objects.get(slug__iexact=slug)
+		#bound_form = PostForm(request.POST, instance=post)
+		
+		#if bound_form.is_valid():
+			#new_post = bound_form.save()
+			#return redirect(new_post)
+		#return render(request, 'pt/post_update_form.html', {'form': bound_form, 'post': post})
 		
 	
 def tags_list(request):
@@ -73,5 +92,24 @@ class TagCreate(ObjectCreateMixin, View):
 		#return render(request, 'pt/tag_create.html', {'form': bound_form})
 	model_form = TagForm
 	template = 'pt/tag_create.html'
+	
+	
+class TagUpdate(ObjectUpdateMixin, View):
+	model = Tag
+	model_form = TagForm
+	template = 'pt/tag_update_form.html'
+	#def get(self, request, slug):
+		#tag = Tag.objects.get(slug__iexact=slug)
+		#bound_form = TagForm(instance=tag)
+		#return render(request, 'pt/tag_update_form.html', {'form': bound_form, 'tag': tag})
+		
+	#def post(self, request, slug):
+		#tag = Tag.objects.get(slug__iexact=slug)
+		#bound_form = TagForm(request.POST, instance=tag)
+		
+		#if bound_form.is_valid():
+			#new_tag = bound_form.save()
+			#return redirect(new_tag)
+		#return render(request, 'pt/tag_update_form.html', {'form': bound_form, 'tag': tag})
 	
 	
