@@ -1,0 +1,39 @@
+.admin-panel {
+	display: block;
+	padding: 3px;
+	
+	position: fixed;
+	bottom: 100px;
+	right: 50px;
+	
+	border: 1px solid #666;
+	border-radius: 4px;
+	
+	background-color: #999;
+	opacity: 0.3;
+}
+
+.admin-panel:hover{
+	opacity: 1;
+}
+
+.admin-panel a {
+	display: block;
+	margin-bottom: 5px;	
+}
+
+.admin-panel a:last-child{
+	margin-bottom: 0px;
+}
+
+a.edit, a.delete{
+	display: none;
+}
+
+.link-create {
+	margin-bottom: 5px;
+}
+
+.dropdown-menu{
+	border: 1px solid black;
+}
