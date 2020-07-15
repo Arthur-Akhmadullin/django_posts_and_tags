@@ -7,11 +7,36 @@ from .utils import *
 from .forms import TagForm, PostForm
 
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.paginator import Paginator
 
 
 def posts_list(request):
 	posts = Post.objects.all()
-	return render(request, 'pt/index.html', {'posts': posts})
+	
+	paginator = Paginator(posts, 1)
+	page_number = request.GET.get('page', 1) #page - параметр get-запроса в адресной строке, 1 - ззначение по-умолчанию, на тот случай, если нужного значения page не существует (чтобы не возбуждать исключение)
+	page = paginator.get_page(page_number)
+	
+	is_paginated = page.has_other_pages()
+	
+	if page.has_previous():
+		prev_url = '?page={}'.format(page.previous_page_number())
+	else:
+		prev_url = ''
+		
+	if page.has_next():
+		next_url = '?page={}'.format(page.next_page_number())
+	else:
+		next_url=''
+		
+	context = {
+		'page_object': page,
+		'is_paginated': is_paginated,
+		'prev_url': prev_url,
+		'next_url': next_url
+	}
+	
+	return render(request, 'pt/index.html', context=context)
 	
 
 '''

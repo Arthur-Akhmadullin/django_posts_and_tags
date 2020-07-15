@@ -6,7 +6,7 @@
 
 {% block content %}
 	<h1 class="mb-5">Мои умные посты<h1>
-	{% for post in posts %}
+	{% for post in page_object.object_list %}
 		{% include 'pt/includes/post_card.html' %}
 	{% endfor %}
 {% endblock %}
