@@ -9,11 +9,18 @@ from .forms import TagForm, PostForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.paginator import Paginator
 
+from django.db.models import Q
+
 
 def posts_list(request):
-	posts = Post.objects.all()
+	search_query = request.GET.get('search', '')
+	if search_query:
+		posts = Post.objects.filter(Q(title__icontains=search_query) | Q(body__icontains=search_query))
+	else:
+		posts = Post.objects.all()
 	
-	paginator = Paginator(posts, 1)
+		
+	paginator = Paginator(posts, 3)
 	page_number = request.GET.get('page', 1) #page - параметр get-запроса в адресной строке, 1 - ззначение по-умолчанию, на тот случай, если нужного значения page не существует (чтобы не возбуждать исключение)
 	page = paginator.get_page(page_number)
 	
